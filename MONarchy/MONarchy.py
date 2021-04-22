@@ -79,10 +79,28 @@ def gmon(means, nexpected=11, giniv=0.5):
 def gmon_value(data, k=13):
     k_means = create_k_means(data, k)
     giniv = gini(np.array(k_means))
-    return gmon(k_means, len(k_means), giniv)           
+    return gmon(k_means, len(k_means), giniv)   
+
+
+def abmm(sample: np.array, alpha: float = 1) -> float:
+    """Calculates deterministic approximation to BMM to estimate the mean of a sample.
+    (from Paulo Orenstein)
+
+    Args:
+        sample (np.array): Array with observed samples.
+        alpha (float): Interpolation parameter between mean (alpha -> infty) and median (alpha -> 0).
+
+    Returns:
+        float: Mean estimate.
+    """
+    sample_mean = sample.mean()
+    correction = (1 / (3*alpha*len(sample))) * np.sum((sample - sample_mean)**3) / np.sum((sample - sample_mean)**2)
+    abmm = sample_mean - correction
+    return abmm
 
 
 class MONarchy():
+    """A Class to rule them all"""
 
     def __init__(self, data):
         """
@@ -151,4 +169,22 @@ class MONarchy():
             3.5
         """
         return gmon_value(self.data,k)
+
+    def abmm(self, alpha: float = 1):
+        """Calculates deterministic approximation to BMM to estimate the mean of a sample.
+
+        Args:
+            alpha (float): Interpolation parameter between mean (alpha -> infty) and median (alpha -> 0).
+
+        Returns:
+            float: Mean estimate.
+
+        Example :
+            >>> from MONarchy.MONarchy import MONarchy
+            >>> stat = MONarchy([1,2,3,4,5,6]*10)
+            >>> stat.abmm()
+            3.5
+         """
+        return abmm(np.array(self.data))
+              
         
