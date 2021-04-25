@@ -4,6 +4,7 @@ statistics
 """
 
 import numpy as np
+from .Draw import Draw
 
 #for gmon
 
@@ -82,6 +83,8 @@ def gmon_value(data, k=13):
     return gmon(k_means, len(k_means), giniv)   
 
 
+
+
 def abmm(sample: np.array, alpha: float = 1) -> float:
     """Calculates deterministic approximation to BMM to estimate the mean of a sample.
     (from Paulo Orenstein)
@@ -97,6 +100,54 @@ def abmm(sample: np.array, alpha: float = 1) -> float:
     correction = (1 / (3*alpha*len(sample))) * np.sum((sample - sample_mean)**3) / np.sum((sample - sample_mean)**2)
     abmm = sample_mean - correction
     return abmm
+
+def MoN(data, chunks=3):
+        """
+        Compute Median of meaNs
+
+        Arguments:
+        chunks: {int} -- number of chunks
+
+        Returns:
+        {float} -- Returns the Medians of meaNs
+
+        Example :
+            >>> from MONarchy.MONarchy import *
+            >>> MoN([1,2,3,4,5,6000])
+            3.5
+        """
+        
+        g = np.array_split(data, chunks)
+        means = []
+        for array in g:
+            means.append(np.mean(array))
+        return np.median(means)  
+
+
+
+
+
+def bin_gmon(data, k=13, threshold=0.25):
+    """
+    Compute binary Gini MoN (see : The paper whose name cannot be pronounced )
+
+    Arguments:
+    chunks: {int} -- number of chunks
+
+    Returns:
+    {float} -- Returns the Medians of meaNs
+
+    Example :
+        >>> from MONarchy.MONarchy import *
+        >>> MoN([1,2,3,4,5,6000])
+        3.5
+    """
+    k_means = create_k_means(data, k)
+    giniv = gini(np.array(k_means))
+    if (giniv < threshold):
+        return np.mean(data)
+    else :
+        return MoN(data,k)
 
 
 class MONarchy():
@@ -123,17 +174,13 @@ class MONarchy():
         {float} -- Returns the Medians of meaNs
 
         Example :
-            >>> from MONarchy.MONarchy import MONarchy
+            >>> from MONarchy.MONarchy import *
             >>> stat = MONarchy([1,2,3,4,5,6])
             >>> stat.MoN()
             3.5
         """
-        g = np.array_split(self.data, chunks)
-        means = []
-        for array in g:
-            means.append(np.mean(array))
-        return np.median(means)  
-
+        return MoN(self.data, chunks)
+        
     def size(self):
         """
         Return the number of values 
@@ -160,7 +207,7 @@ class MONarchy():
         chunks: {int} -- number of chunks
 
         Returns:
-        {float} -- Returns the Medians of meaNs
+        {float} -- Returns the Binary Medians of meaNs
 
         Example :
             >>> from MONarchy.MONarchy import MONarchy
@@ -186,5 +233,23 @@ class MONarchy():
             3.5
          """
         return abmm(np.array(self.data))
+
+    def Bin_GMoN(self, k=13):
+        """
+        Compute Binary Gini Median of meaNs
+
+        Arguments:
+        chunks: {int} -- number of chunks
+
+        Returns:
+        {float} -- Returns the Binary Gini Medians of meaNs
+
+        Example :
+            >>> from MONarchy.MONarchy import MONarchy
+            >>> stat = MONarchy([1,2,3,4,5,6]*10)
+            >>> stat.GMoN()
+            3.5
+        """
+        return gmon_value(self.data,k)
               
         
