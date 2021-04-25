@@ -39,8 +39,7 @@ setup(
     url='https://github.com/prise-3d/MONarchy',
     install_requires=[
         'numpy',
-        'pandas',
-        'json'
+        'pandas'
     ],
     cmdclass={
         'test': TestCommand,
