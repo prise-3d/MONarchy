@@ -27,6 +27,8 @@ setup(
     maintainer_email='samuel.delepoulle@univ-littoral.fr',
     license='MIT',
     packages=['MONarchy'],
+    long_description=open('README.md').read(),
+    long_description_content_type='text/markdown',
     classifiers=[
         'Development Status :: 4 - Beta',
         'License :: OSI Approved :: MIT License',
