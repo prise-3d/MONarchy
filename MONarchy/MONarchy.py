@@ -5,6 +5,11 @@ statistics
 
 import numpy as np
 
+class NotEnoughValue(Exception):
+    pass
+
+
+
 
 #for gmon
 
@@ -25,7 +30,7 @@ def gini(array):
 def create_k_means(samples, k=11):
     
     if len(samples) < k:
-        raise f"Need at least {k} samples..."
+        raise NotEnoughValue("Need at least", k, "samples...")
 
     means = []
     counters = []
@@ -184,8 +189,6 @@ class MONarchy():
     def size(self):
         """
         Return the number of values 
-
-        
 
         Returns:
         {int} -- Returns the number of values

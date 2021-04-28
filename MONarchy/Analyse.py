@@ -1,6 +1,7 @@
 import pandas as pd
 import json
 from .MONarchy import MONarchy
+from .MONarchy import NotEnoughValue
 
 class Analyse:
 
@@ -18,13 +19,13 @@ class Analyse:
         """
         return the data head
         """
-        return self.data.head()    
+        return self.data.head()   
 
 
-    def info(self, column):
+    def describe(self, column):
         """ 
-        Return a JSON file with statistics indicator
-        and various MON estimators
+        Return a dictionnary with statistics indicator
+        and various MON estimators (for the selected column)
         """
 
         # variables to return
@@ -33,11 +34,15 @@ class Analyse:
 
         stat = MONarchy(self.data[column])
         MoN = stat.MoN()
-        GMON = stat.GMoN()
-        Bin_GMON = stat.Bin_GMoN()
+        
+        try :
+            GMON = stat.GMoN()
+            Bin_GMON = stat.Bin_GMoN()
+        except NotEnoughValue :
+            GMON = "not enough values"
+            Bin_GMON = "not enough values"
 
         # dictionnary
-
         value = {
             "mean": mean,
             "median": median,
@@ -46,5 +51,24 @@ class Analyse:
             "Bin_GMoN" : Bin_GMON
         }
 
+        return value
+
+    def infos(self):
+        """
+        Return a JSON file with statistics indicator
+        and various MON estimators for all columns
+        """
+
+        l = []
+        for col in self.data.columns :
+            val= self.describe(col)
+            
+            l.append([col,val])      
+        return json.dumps(l)      
+
+
+    def info(self, column):
+
+        value = self.describe(column)
         # return the dictionnary as a JSON object
         return json.dumps(value)
