@@ -1,5 +1,7 @@
 import pandas as pd
 import json
+import seaborn as sns
+import matplotlib.pyplot as plt
 from .MONarchy import MONarchy
 from .MONarchy import NotEnoughValue
 
@@ -70,7 +72,13 @@ class Analyse:
 
 
     def info(self, column):
-
         value = self.describe(column)
         # return the dictionnary as a JSON object
         return json.dumps(value)
+
+
+    def visualize(self, column, path):
+        sns.displot(self.data[column])
+        plt.savefig(path)
+
+
