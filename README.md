@@ -14,7 +14,8 @@ exemple :
 a = Analyse(path)
 print(a.head())
 
-print(a.info(column_name))
+print(a.infos())
+a.save_graph("0_0_R","fig.png")
 ```
 with 
 - ``path`` : the path of a CSV file (string)
@@ -22,12 +23,15 @@ with
 
 produce a JSON file with statistical estimators
 
-## Changelog ##
+## Changelog 
 
-### 1.0.5 ###
+### 1.0.6
+- add save_graph in Analyse
+
+### 1.0.5 
 - add bayesian MoN 
 
-## Refercences ##
+## Refercences 
 
 @article{orenstein_robust_2019,
 	title = {Robust Mean Estimation with the Bayesian Median of Means},
