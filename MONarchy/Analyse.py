@@ -34,6 +34,7 @@ class Analyse:
 
         stat = MONarchy(self.data[column])
         MoN = stat.MoN()
+        abmm = stat.abmm()
         
         try :
             GMON = stat.GMoN()
@@ -48,7 +49,8 @@ class Analyse:
             "median": median,
             "MoN": MoN,
             "GMoN" : GMON,
-            "Bin_GMoN" : Bin_GMON
+            "Bin_GMoN" : Bin_GMON,
+            "Bayesian MoN" : abmm
         }
 
         return value
@@ -64,7 +66,7 @@ class Analyse:
             val= self.describe(col)
             
             l.append([col,val])      
-        return json.dumps(l)      
+        return json.dumps(l)  
 
 
     def info(self, column):
