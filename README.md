@@ -1,5 +1,6 @@
 # MONarchy module for MON estimators #
-======================================
+
+![](https://img.shields.io/github/workflow/status/prise-3d/MONarchy/build?style=flat-square) ![](https://img.shields.io/pypi/v/MONarchy?style=flat-square) ![](https://img.shields.io/pypi/dm/MONarchy?style=flat-square)
 
 ## MONArchy provides : ##
 - estimation functions using MON and derivative methods
@@ -39,3 +40,9 @@ produce a JSON file with statistical estimators
 	eprint = {1906.01204},
 	keywords = {Bayesian, Estimators, {MON}, Math, Mathematics - Statistics Theory, Statistics - Methodology},
 }
+
+
+
+# License
+
+[MIT](LICENSE)
