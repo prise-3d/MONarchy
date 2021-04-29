@@ -72,12 +72,24 @@ class Analyse:
 
 
     def info(self, column):
+        """ 
+        Return a JSON file with statistics indicator
+        and various MON estimators (for the selected column)
+
+
+        Arguments:
+        column: {string} -- number of chunks
+
+        """
         value = self.describe(column)
         # return the dictionnary as a JSON object
         return json.dumps(value)
 
 
-    def visualize(self, column, path):
+    def save_graph(self, column, path):
+        """
+        Save a PNG file with a graphic representation of the distribution
+        """
         sns.displot(self.data[column])
         plt.savefig(path)
 
