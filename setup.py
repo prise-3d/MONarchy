@@ -21,7 +21,7 @@ class TestCommand(distutils.command.check.check):
 
 setup(
     name='MONarchy',
-    version='1.0.4',
+    version='1.0.5',
     description='MON (Meadian of meaNs)',
     maintainer='Samuel DELEPOULLE',
     maintainer_email='samuel.delepoulle@univ-littoral.fr',
