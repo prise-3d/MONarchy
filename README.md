@@ -25,6 +25,9 @@ produce a JSON file with statistical estimators
 
 ## Changelog 
 
+### 1.0.7
+- correct requirements.txt
+
 ### 1.0.6
 - add save_graph in Analyse
 
