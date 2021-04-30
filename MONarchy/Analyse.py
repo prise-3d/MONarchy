@@ -28,6 +28,13 @@ class Analyse:
         """ 
         Return a dictionnary with statistics indicator
         and various MON estimators (for the selected column)
+
+        Arguments:
+        column: {string} -- the name of the column to use
+
+        Returns:
+        {{string,string}} -- dictionary of statistical information
+
         """
 
         # variables to return
@@ -68,7 +75,7 @@ class Analyse:
             val= self.describe(col)
             
             l.append([col,val])      
-        return json.dumps(l)  
+        return json.dumps(l)      
 
 
     def info(self, column):
@@ -76,19 +83,33 @@ class Analyse:
         Return a JSON file with statistics indicator
         and various MON estimators (for the selected column)
 
-
         Arguments:
         column: {string} -- number of chunks
+
+        Returns:
+        {json} -- json file with the MON estimators
 
         """
         value = self.describe(column)
         # return the dictionnary as a JSON object
         return json.dumps(value)
 
+    def column_name_list(self) :
+        """
+        return the list of the column's titles
+
+        Returns:
+        {[string]} -- Returns the list of column's name
+        """
+        return self.data.columns
 
     def save_graph(self, column, path):
         """
         Save a PNG file with a graphic representation of the distribution
+
+        Arguments:
+        column: {string} -- the name of the column to use
+        path: {string} -- the location path of the file to save
         """
         sns.displot(self.data[column])
         plt.savefig(path)

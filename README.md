@@ -25,6 +25,9 @@ produce a JSON file with statistical estimators
 
 ## Changelog 
 
+### 1.0.8
+- add a method to list column name
+
 ### 1.0.7
 - correct requirements.txt
 
