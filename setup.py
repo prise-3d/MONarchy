@@ -21,7 +21,7 @@ class TestCommand(distutils.command.check.check):
 
 setup(
     name='MONarchy',
-    version='1.0.8',
+    version='1.0.9',
     description='MON (Meadian of meaNs)',
     maintainer='Samuel DELEPOULLE',
     maintainer_email='samuel.delepoulle@univ-littoral.fr',
@@ -39,7 +39,8 @@ setup(
     url='https://github.com/prise-3d/MONarchy',
     install_requires=[
         'numpy',
-        'pandas'
+        'pandas',
+        'seaborn'
     ],
     cmdclass={
         'test': TestCommand,
