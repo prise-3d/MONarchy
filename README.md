@@ -37,8 +37,9 @@ produce a JSON file with statistical estimators
 ### 1.0.5 
 - add bayesian MoN 
 
-## Refercences 
+## References 
 
+```
 @article{orenstein_robust_2019,
 	title = {Robust Mean Estimation with the Bayesian Median of Means},
 	url = {http://arxiv.org/abs/1906.01204},
@@ -50,8 +51,21 @@ produce a JSON file with statistical estimators
 	eprint = {1906.01204},
 	keywords = {Bayesian, Estimators, {MON}, Math, Mathematics - Statistics Theory, Statistics - Methodology},
 }
+```
 
-
+```
+@unpublished{buisine:hal-03201630,
+  TITLE = {{Fireflies removing in Monte Carlo rendering with adaptive Median of meaNs}},
+  AUTHOR = {Buisine, J{\'e}r{\^o}me and Delepoulle, Samuel and Renaud, Christophe},
+  URL = {https://hal.archives-ouvertes.fr/hal-03201630},
+  NOTE = {working paper or preprint},
+  YEAR = {2021},
+  MONTH = Apr,
+  PDF = {https://hal.archives-ouvertes.fr/hal-03201630/file/Gini_MON_2021_arXiv.pdf},
+  HAL_ID = {hal-03201630},
+  HAL_VERSION = {v1},
+}
+```
 
 # License
 
