@@ -113,6 +113,6 @@ class Analyse:
         """
         sns.displot(self.data[column])
         plt.savefig(path)
-        plt.close
-
+        plt.clf()
+        plt.close()
 
